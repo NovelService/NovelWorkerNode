@@ -1,0 +1,17 @@
+{
+  "name": "novelworkernode",
+  "version": "1.0.0",
+  "description": "novel worker in node",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "test",
+    "docker-build": "docker build -t novelworkernode:latest ."
+  },
+  "author": "Xiang Rong Lin",
+  "license": "MIT",
+  "dependencies": {
+    "percollate": "^2.1.0",
+    "stompit": "^1.0.0"
+  }
+}
