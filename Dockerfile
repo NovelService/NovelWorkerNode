@@ -1,4 +1,4 @@
-FROM xiangronglin/percollate-alpine:latest
+FROM xiangronglin/puppeteer:latest
 # ENV NODE_ENV=production
 WORKDIR /home/user/app
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
