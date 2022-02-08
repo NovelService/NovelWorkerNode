@@ -29,7 +29,8 @@
 				"env": {
 					"DEBUG": "*",
 					"NODE_ENV": "development"
-				}
+				},
+				"network": "novelworkernode_default"
 			},
 			"node": {
 				"enableDebugging": true
