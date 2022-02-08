@@ -8,17 +8,3 @@ services:
     ports:
       - 61613:61613
       - 8161:8161
-
-  novelworkernode:
-    image: novelworkernode
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    depends_on:
-      - amq
-    environment:
-      NODE_ENV: development
-    ports:
-      - 3000:3000
-      - 9229:9229
-    command: [ "node", "--inspect=0.0.0.0:9229", "src/index.js" ]
