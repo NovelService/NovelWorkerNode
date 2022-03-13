@@ -1,23 +1,29 @@
 import { SQSClient, ReceiveMessageCommand } from "@aws-sdk/client-sqs";
 
 import _messageHandler from './messageHandler.js';
+import fileHandler from './fileHandler.js'
 
 async function start(config, messageHandler = _messageHandler) {
-    const client = new SQSClient({ region: config.region, credentials: config.credentials });
+    const client = new SQSClient(
+        {
+            region: config.aws.region,
+            credentials: config.aws.credentials
+        });
     const command = new ReceiveMessageCommand(
         {
-            QueueUrl: config.queueUrl,
+            QueueUrl: config.aws.sqs.queueUrl,
             MaxNumberOfMessages: 1,
             WaitTimeSeconds: 20
         }
     );
 
 
-    while(true) {
+    while (true) {
         try {
             const response = await client.send(command);
             if (typeof response.Messages !== 'undefined') {
-                messageHandler.handleMessage(response.Messages[0].Body);
+                await messageHandler.handleMessage(response.Messages[0].Body);
+                await fileHandler.saveFile(config, "todo")
             }
         } catch (error) {
             console.warn(error);

@@ -1,7 +1,7 @@
 import {epub, pdf} from 'percollate';
 
 function toEpub(urls, options) {
-    epub(urls, options)
+    return epub(urls, options)
     .then(r => console.log("finished converting epub"))
     .catch(error => console.warn(error));
 }
