@@ -28,9 +28,12 @@
 			"dockerRun": {
 				"env": {
 					"DEBUG": "*",
-					"NODE_ENV": "development"
+					"NODE_ENV": "development",
+					"REGION": "${env:REGION}",
+					"QUEUE_URL": "${env:QUEUE_URL}",
+					"ACCESS_KEY_ID": "${env:ACCESS_KEY_ID}",
+					"SECRET_ACCESS_KEY": "${env:SECRET_ACCESS_KEY}",
 				},
-				"network": "novelworkernode_default"
 			},
 			"node": {
 				"enableDebugging": true

@@ -1,19 +1,28 @@
-import stomp from 'stompit';
-import converterWrapper from './converter.js';
+import { SQSClient, ReceiveMessageCommand } from "@aws-sdk/client-sqs";
 
-function start(config) {
-    stomp.connect({host: 'amq'}, (err, client) => {
-        client.subscribe({destination: 'stomp'}, (err, message) => {
-            handleMessage(message);
-        })
-    })
+import _messageHandler from './messageHandler.js';
+
+async function start(config, messageHandler = _messageHandler) {
+    const client = new SQSClient({ region: config.region, credentials: config.credentials });
+    const command = new ReceiveMessageCommand(
+        {
+            QueueUrl: config.queueUrl,
+            MaxNumberOfMessages: 1,
+            WaitTimeSeconds: 20
+        }
+    );
+
+
+    while(true) {
+        try {
+            const response = await client.send(command);
+            if (typeof response.Messages !== 'undefined') {
+                messageHandler.handleMessage(response.Messages[0].Body);
+            }
+        } catch (error) {
+            console.warn(error);
+        }
+    }
 }
 
-function handleMessage(message, converter = converterWrapper) {
-    message.readString('UTF-8', (err, body) => {
-        let parameters = JSON.parse(body);
-        converter.toEpub(parameters.urls, parameters.options);
-    })
-}
-
-export default {start};
+export default { start };

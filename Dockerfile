@@ -1,5 +1,5 @@
 FROM xiangronglin/puppeteer:latest
-# ENV NODE_ENV=production
+
 WORKDIR /home/user/app
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 RUN yarn install && mv node_modules ../
