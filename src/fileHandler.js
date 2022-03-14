@@ -1,25 +1,16 @@
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
 import fs from 'fs'
 
-async function saveFile(config, filePath) {
-
-    const client = new S3Client(
-        {
-            region: config.aws.region,
-            credentials: config.aws.credentials,
-
-        }
-    );
-
+async function saveFile(context, filePath) {
     const body = fs.readFileSync("./a.epub");
     const command = new PutObjectCommand(
         {
-            Bucket: config.aws.s3.bucket,
+            Bucket: context.config.aws.s3.bucket,
             Key: "novelworker",
             Body: body
         })
 
-    const response = await client.send(command)
+    const response = await context.clients.s3.send(command)
     console.log(response)
 }
 

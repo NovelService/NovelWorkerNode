@@ -1,10 +1,29 @@
 import messageListener from './messageListener.js';
+import { S3Client } from "@aws-sdk/client-s3";
+import { SQSClient } from "@aws-sdk/client-sqs";
 
 console.log("start");
 
 const config = readConfig();
 
-messageListener.start(config);
+const context = {
+    config: config,
+    clients: {
+        sqs: new SQSClient(
+            {
+                region: config.aws.region,
+                credentials: config.aws.credentials
+            }),
+        s3: new S3Client(
+            {
+                region: config.aws.region,
+                credentials: config.aws.credentials,
+            }
+        )
+    }
+}
+
+messageListener.start(context);
 
 console.log("stop");
 
