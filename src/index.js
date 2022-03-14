@@ -12,7 +12,8 @@ const context = {
         sqs: new SQSClient(
             {
                 region: config.aws.region,
-                credentials: config.aws.credentials
+                credentials: config.aws.credentials,
+                endpoint: "http://172.17.0.2:4566/"
             }),
         s3: new S3Client(
             {

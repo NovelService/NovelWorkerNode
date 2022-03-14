@@ -30,7 +30,8 @@
 					"DEBUG": "*",
 					"NODE_ENV": "development",
 				},
-				"envFiles": ["${workspaceFolder}/.env"]
+				"envFiles": ["${workspaceFolder}/.env"],
+				"network": "bridge"
 			},
 			"node": {
 				"enableDebugging": true
