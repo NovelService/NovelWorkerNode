@@ -1,10 +1,12 @@
 import messageListener from './messageListener.js';
 
-console.log("start")
+console.log("start");
 
 const config = readConfig();
 
 messageListener.start(config);
+
+console.log("stop");
 
 function readConfig() {
     // TODO verify non-empty values
