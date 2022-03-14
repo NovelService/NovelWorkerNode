@@ -29,12 +29,8 @@
 				"env": {
 					"DEBUG": "*",
 					"NODE_ENV": "development",
-					"ACCESS_KEY_ID": "${env:ACCESS_KEY_ID}",
-					"SECRET_ACCESS_KEY": "${env:SECRET_ACCESS_KEY}",
-					"REGION": "${env:REGION}",
-					"QUEUE_URL": "${env:QUEUE_URL}",
-					"BUCKET": "${env:BUCKET}"
 				},
+				"envFiles": ["${workspaceFolder}/.env"]
 			},
 			"node": {
 				"enableDebugging": true

@@ -2,9 +2,12 @@
 Microservice extracting content from webpages and creating ebooks from it.
 
 ## Config
-Required environment variables
+Create a `.env` file in the project root with following values set
 
-- REGION
-- QUEUE_URL
-- ACCESS_KEY_ID
-- SECRET_ACCESS_KEY
+```
+ACCESS_KEY_ID=
+SECRET_ACCESS_KEY=
+REGION=
+QUEUE_URL=
+BUCKET=
+```
