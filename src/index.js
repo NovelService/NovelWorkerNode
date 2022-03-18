@@ -12,7 +12,8 @@ const context = {
         sqs: new SQSClient(
             {
                 region: config.aws.region,
-                credentials: config.aws.credentials
+                credentials: config.aws.credentials,
+                endpoint: config.aws.endpoint
             }),
         s3: new S3Client(
             {
@@ -25,17 +26,16 @@ const context = {
 
 messageListener.start(context);
 
-console.log("stop");
-
 function readConfig() {
     // TODO verify non-empty values
-    let config = {
+    return {
         aws: {
             credentials: {
                 accessKeyId: process.env.ACCESS_KEY_ID,
                 secretAccessKey: process.env.SECRET_ACCESS_KEY,
             },
             region: process.env.REGION,
+            endpoint: process.env.ENDPOINT,
             sqs: {
                 queueUrl: process.env.QUEUE_URL
             },
@@ -44,6 +44,4 @@ function readConfig() {
             }
         }
     };
-
-    return config;
 }
