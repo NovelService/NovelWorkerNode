@@ -8,6 +8,7 @@ Follow its [Installation guideline](https://github.com/localstack/localstack#ins
 ```
 localstack start -d
 awslocal sqs create-queue --queue-name queue
+awslocal s3api create-bucket --bucket bucket
 ```
 
 ## Config
@@ -20,5 +21,10 @@ SECRET_ACCESS_KEY=ever
 REGION=us-east-1
 QUEUE_URL=http://172.17.0.2:4566/000000000000/queue
 ENDPOINT=http://172.17.0.2:4566/
-BUCKET=
+BUCKET=bucket
 ```
+
+## Documentation
+### Links
+- https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/index.html
+- https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/index.html

@@ -19,6 +19,8 @@ const context = {
             {
                 region: config.aws.region,
                 credentials: config.aws.credentials,
+                endpoint: config.aws.endpoint,
+                forcePathStyle: true //Required for localstack setup
             }
         )
     }
