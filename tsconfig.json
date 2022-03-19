@@ -1,10 +1,12 @@
 {
+    "extends": "@tsconfig/node16/tsconfig.json",
     "compilerOptions": {
-      "module": "CommonJS",
-      "noImplicitAny": true,
+      "module": "ES2020",
+      "moduleResolution": "Node",
+      "allowJs": false,
+      "outDir": "./build",
       "removeComments": true,
       "preserveConstEnums": true,
-      "strictNullChecks": true,
       "sourceMap": true,
     },
     "include": ["src/**/*"],

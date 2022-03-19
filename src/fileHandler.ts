@@ -1,8 +1,10 @@
-import { PutObjectCommand } from "@aws-sdk/client-s3";
-import fs from 'fs'
+import { Context } from "./types/context.js";
 
-async function saveFile(context, filePath) {
-    const body = fs.readFileSync("./a.epub");
+import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { readFileSync } from 'fs'
+
+async function saveFile(context: Context, filePath: string) {
+    const body = readFileSync("./a.epub");
     const command = new PutObjectCommand(
         {
             Bucket: context.config.aws.s3.bucket,
