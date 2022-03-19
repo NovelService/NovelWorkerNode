@@ -1,4 +1,7 @@
+import {Config} from "./types/config"
+import {Context} from "./types/context"
 import messageListener from './messageListener.js';
+
 import { S3Client } from "@aws-sdk/client-s3";
 import { SQSClient } from "@aws-sdk/client-sqs";
 
@@ -6,7 +9,7 @@ console.log("start");
 
 const config = readConfig();
 
-const context = {
+const context: Context  = {
     config: config,
     clients: {
         sqs: new SQSClient(
@@ -28,22 +31,30 @@ const context = {
 
 messageListener.start(context);
 
-function readConfig() {
-    // TODO verify non-empty values
+function readConfig(): Config {
     return {
         aws: {
             credentials: {
-                accessKeyId: process.env.ACCESS_KEY_ID,
-                secretAccessKey: process.env.SECRET_ACCESS_KEY,
+                accessKeyId: getEnvOrThrow("ACCESS_KEY_ID"),
+                secretAccessKey: getEnvOrThrow("SECRET_ACCESS_KEY"),
             },
-            region: process.env.REGION,
+            region: getEnvOrThrow("REGION"),
             endpoint: process.env.ENDPOINT,
             sqs: {
-                queueUrl: process.env.QUEUE_URL
+                queueUrl: getEnvOrThrow("QUEUE_URL")
             },
             s3: {
-                bucket: process.env.BUCKET
+                bucket: getEnvOrThrow("BUCKET")
             }
         }
     };
+}
+
+function getEnvOrThrow(key: string): string {
+    const value = process.env[key]  
+    if (typeof value !== "undefined") {
+        return value
+    } else {
+        throw (`Missing environment variable ${key}`)
+    }
 }
