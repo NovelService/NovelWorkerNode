@@ -1,5 +1,5 @@
-import {Config} from "./types/config"
-import {Context} from "./types/context"
+import {Config} from "./types/config.js"
+import {Context} from "./types/context.js"
 import messageListener from './messageListener.js';
 
 import { S3Client } from "@aws-sdk/client-s3";

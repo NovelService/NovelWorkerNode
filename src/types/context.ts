@@ -1,4 +1,4 @@
-import { Config } from "./config";
+import { Config } from "./config.js";
 import { S3Client } from "@aws-sdk/client-s3";
 import { SQSClient } from "@aws-sdk/client-sqs";
 
