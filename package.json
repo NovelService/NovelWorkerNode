@@ -2,7 +2,7 @@
   "name": "novelworkernode",
   "version": "1.0.0",
   "description": "novel worker in node",
-  "main": "./build/index.js",
+  "main": "./dist/index.js",
   "type": "module",
   "scripts": {
     "test": "test",

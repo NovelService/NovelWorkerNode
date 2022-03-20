@@ -4,7 +4,7 @@
       "module": "ES2020",
       "moduleResolution": "Node",
       "allowJs": false,
-      "outDir": "./build",
+      "outDir": "./dist",
       "removeComments": true,
       "preserveConstEnums": true,
       "sourceMap": true,

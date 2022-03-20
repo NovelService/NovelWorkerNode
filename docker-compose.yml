@@ -1,0 +1,16 @@
+# version: '3'
+
+# services:
+#   novelworker:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     environment:
+#       - DEBUG=*
+#       - NODE_ENV=development
+#     env_file:
+#       - .env
+#     ports:
+#       - "9229:9229"
+#     network_mode: bridge
+#     command: "node --inspect=0.0.0.0:9229 dist/index.js"
