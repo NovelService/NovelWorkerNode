@@ -1,7 +1,7 @@
 FROM xiangronglin/puppeteer:latest
 
 WORKDIR /home/user/app
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+COPY ["package.json", "npm-shrinkwrap.json*", "./"]
 RUN yarn install && mv node_modules ../ 
 COPY . .
 EXPOSE 3000
