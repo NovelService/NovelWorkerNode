@@ -1,15 +1,19 @@
 {
     "configurations": [
         {
-            "name": "Docker Node.js Launch",
-            "type": "docker",
-            "request": "launch",
-            "preLaunchTask": "docker-run: debug",
-            "platform": "node",
-            "node": {
-                "localRoot": "${workspaceFolder}/src",
-                "remoteRoot": "/home/user/app/src"
+         
+                "type": "pwa-node",
+                "request": "launch",
+                "name": "Launch Program",
+                "skipFiles": [
+                    "<node_internals>/**"
+                ],
+                "preLaunchTask": "typescript",
+                "program": "${workspaceFolder}/src/index.ts",
+                "outFiles": [
+                    "${workspaceFolder}/**/*.js"
+                ],
+                "sourceMaps": true
             }
-        }
     ]
 }
