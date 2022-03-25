@@ -1,10 +1,20 @@
+FROM node:16-alpine3.15 as build
+
+WORKDIR /home/user/build
+
+COPY . .
+RUN yarn add typescript
+RUN node_modules/.bin/tsc
+
 FROM xiangronglin/puppeteer:latest
 
+ENV NOVE_ENV=production
 WORKDIR /home/user/app
-COPY ["package.json", "npm-shrinkwrap.json*", "./"]
+
+COPY --from=build "/home/user/build/dist/" "./dist/"
+COPY "package.json"  "./"
 RUN yarn install && mv node_modules ../ 
-COPY . .
-EXPOSE 3000
-# RUN chown -R user:user home/user/app
+# COPY . .
+
 USER user
-CMD ["node", "build/index.js"]
+CMD ["node", "dist/index.js"]
