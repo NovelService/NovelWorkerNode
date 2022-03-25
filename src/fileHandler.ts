@@ -9,7 +9,8 @@ async function saveFile(context: Context, filePath: string) {
         {
             Bucket: context.config.aws.s3.bucket,
             Key: "novelworker",
-            Body: body
+            Body: body,
+            ACL: "public-read"
         })
 
     const response = await context.clients.s3.send(command)
