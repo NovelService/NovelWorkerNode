@@ -22,8 +22,6 @@
 	// "postCreateCommand": "apt-get update && apt-get install -y curl",
 	// Uncomment when using a ptrace-based debugger like C++, Go, and Rust
 	"runArgs": [
-		"--env-file",
-		".env",
 		"--network",
 		"novelworkernode_default"
 		// "--cap-add=SYS_PTRACE",

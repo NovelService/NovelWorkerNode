@@ -13,7 +13,8 @@
                 "outFiles": [
                     "${workspaceFolder}/**/*.js"
                 ],
-                "sourceMaps": true
+                "sourceMaps": true,
+                "envFile": "${workspaceFolder}/.env"
             }
     ]
 }
