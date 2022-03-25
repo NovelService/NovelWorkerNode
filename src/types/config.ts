@@ -2,6 +2,7 @@ import { Credentials } from "@aws-sdk/types/dist-types/credentials"
 
 export interface Config {
     aws: AWSConfig
+    pollInterval: number
 }
 
 interface AWSConfig {

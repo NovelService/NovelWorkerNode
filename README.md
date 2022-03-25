@@ -22,6 +22,7 @@ REGION=us-east-1
 QUEUE_URL=http://localstack:4566/000000000000/queue
 ENDPOINT=http://localstack:4566/
 BUCKET=bucket
+POLL_INTERVAL=20000
 ```
 
 ## Documentation

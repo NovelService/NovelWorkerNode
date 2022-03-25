@@ -46,7 +46,8 @@ function readConfig(): Config {
             s3: {
                 bucket: getEnvOrThrow("BUCKET")
             }
-        }
+        },
+        pollInterval: parseInt(process.env.POLL_INTERVAL || "20000")
     };
 }
 
