@@ -14,6 +14,7 @@ USER user
 
 COPY --from=build /home/user/build/dist/ ./dist/
 COPY package.json package-lock.json ./
-RUN npm install && mv node_modules ../ 
+RUN npm install
+RUN mv node_modules ../ 
 
 CMD ["node", "dist/index.js"]
