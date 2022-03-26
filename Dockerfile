@@ -10,11 +10,11 @@ FROM xiangronglin/puppeteer:latest
 
 ENV NOVE_ENV=production
 WORKDIR /home/user/app
+RUN chown -R user:user home/user/app
 
 COPY --from=build "/home/user/build/dist/" "./dist/"
 COPY "package.json"  "./"
 RUN yarn install && mv node_modules ../ 
-# COPY . .
 
 USER user
 CMD ["node", "dist/index.js"]
