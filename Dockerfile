@@ -6,7 +6,7 @@ COPY . .
 RUN yarn add typescript
 RUN node_modules/.bin/tsc
 
-FROM xiangronglin/puppeteer:latest
+FROM xiangronglin/puppeteer:test
 
 ENV NOVE_ENV=production
 WORKDIR /home/user/app
