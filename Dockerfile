@@ -10,7 +10,7 @@ FROM xiangronglin/puppeteer:latest
 
 ENV NOVE_ENV=production
 WORKDIR /home/user/app
-RUN chown -R user:user home/user/app
+RUN chmod 660 /home/user/app
 
 COPY --from=build "/home/user/build/dist/" "./dist/"
 COPY "package.json"  "./"
