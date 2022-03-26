@@ -10,10 +10,10 @@ FROM xiangronglin/puppeteer:test
 
 ENV NOVE_ENV=production
 WORKDIR /home/user/app
+USER user
 
 COPY --from=build /home/user/build/dist/ ./dist/
 COPY package.json package-lock.json ./
 RUN npm install && mv node_modules ../ 
 
-USER user
 CMD ["node", "dist/index.js"]
