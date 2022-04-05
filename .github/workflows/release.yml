@@ -1,0 +1,31 @@
+name: release
+
+env:
+  IMAGE_NAME: xiangronglin/novel-worker-node
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - "README.md"
+      - ".devcontainer"
+      - ".vscode"
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build docker image
+        run: docker build . -t ${{ env.IMAGE_NAME }}:latest -t ${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+      - name: Docker Hub login
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }} 
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Docker push
+        run: docker push ${{ env.IMAGE_NAME }} -a
