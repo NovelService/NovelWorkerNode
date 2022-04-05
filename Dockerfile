@@ -15,7 +15,6 @@ USER root
 COPY --from=build /home/user/build/dist/ ./dist/
 COPY package.json package-lock.json ./
 RUN npm install
-# RUN mv node_modules ../ 
 
 USER user
 
