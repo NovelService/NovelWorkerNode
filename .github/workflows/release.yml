@@ -26,6 +26,9 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }} 
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      
+      - name: Docker Hub logout
+        run: docker logout
 
       # - name: Docker Hub push
         # run: docker push ${{ env.IMAGE_NAME }} -a
