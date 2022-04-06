@@ -34,6 +34,7 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: public.ecr.aws
+          ecr: true
           username: ${{ secrets.ECR_ACCESS_KEY_ID }}
           password: ${{ secrets.ECR_ACCESS_KEY }}
         env:
