@@ -37,8 +37,8 @@ jobs:
           ecr: true
           username: ${{ secrets.ECR_ACCESS_KEY_ID }}
           password: ${{ secrets.ECR_ACCESS_KEY }}
-        env:
-          AWS_REGION: eu-central-1
+        # env:
+          # AWS_REGION: eu-central-1
 
       - name: public ECR push
         run: docker push ${{ env.IMAGE_NAME }} -a
