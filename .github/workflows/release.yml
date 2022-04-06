@@ -1,7 +1,8 @@
 name: release
 
 env:
-  IMAGE_NAME: xiangronglin/novel-worker-node
+  
+  IMAGE_NAME: novel-worker-node
   ECR_REGISTRY: public.ecr.aws
 
 on:
@@ -22,10 +23,10 @@ jobs:
       - name: Build docker image
         run: |
           docker build . \
-          -t ${{ env.IMAGE_NAME }}:latest \
-          -t ${{ env.IMAGE_NAME }}:${{ github.sha }} \
-          -t ${{ env.ECR_REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
-          -t ${{ env.ECR_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          -t xiangronglin/${{ env.IMAGE_NAME }}:latest \
+          -t xiangronglin/${{ env.IMAGE_NAME }}:${{ github.sha }} \
+          -t ${{ env.ECR_REGISTRY }}/c2s9m0s3/${{ env.IMAGE_NAME }}:latest \
+          -t ${{ env.ECR_REGISTRY }}/c2s9m0s3/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       - name: Docker Hub login
         uses: docker/login-action@v1
