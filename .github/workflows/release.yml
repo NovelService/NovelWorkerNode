@@ -47,4 +47,4 @@ jobs:
         # AWS_REGION: eu-central-1
 
       - name: Docker Hub and ECR push
-        run: docker push ${{ env.ECR_REGISTRY }}/${{ env.IMAGE_NAME }} -a
+        run: docker push ${{ env.ECR_REGISTRY }}/c2s9m0s3/${{ env.IMAGE_NAME }} -a
