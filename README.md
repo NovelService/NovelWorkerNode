@@ -25,8 +25,15 @@ BUCKET=bucket
 POLL_INTERVAL=20000
 ```
 
+### Permissions
+- "s3:PutObject"
+- "s3:GetObject"
+- "dynamodb:UpdateItem"
+- AWSLambdaSQSQueueExecutionRole  (to be reduced)
 ## Documentation
 ### Links
 - https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-sqs/index.html
 - https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/index.html
+- https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-dynamodb/index.html
+- https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/modules/_aws_sdk_s3_request_presigner.html
 - https://docs.localstack.cloud/localstack/configuration/

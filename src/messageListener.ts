@@ -1,5 +1,4 @@
 import _messageHandler from './messageHandler.js';
-import fileHandler from './fileHandler.js'
 import { Context } from "./types/context.js";
 
 import { ReceiveMessageCommand, DeleteMessageCommand } from "@aws-sdk/client-sqs";
@@ -27,8 +26,8 @@ async function start(context: Context, messageHandler = _messageHandler) {
         try {
             const response = await context.clients.sqs.send(command);
             if (typeof response.Messages !== 'undefined' && typeof response.Messages[0].Body !== "undefined") {
-                await messageHandler.handleMessage(response.Messages[0].Body);
-                await fileHandler.saveFile(context, "todo");
+                await messageHandler.handleMessage(context, response.Messages[0].Body);
+
                 if (typeof response.Messages[0].ReceiptHandle !== "undefined") {
                     await deleteMessage(context, response.Messages[0].ReceiptHandle);
                 }

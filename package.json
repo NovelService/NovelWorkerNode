@@ -11,8 +11,10 @@
   "author": "Xiang Rong Lin",
   "license": "MIT",
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.54.0",
-    "@aws-sdk/client-sqs": "^3.54.0",
+    "@aws-sdk/client-dynamodb": "3.82.0",
+    "@aws-sdk/client-s3": "3.82.0",
+    "@aws-sdk/client-sqs": "3.82.0",
+    "@aws-sdk/s3-request-presigner": "3.82.0",
     "percollate": "^2.1.0"
   },
   "override": {

@@ -14,5 +14,8 @@ interface AWSConfig {
     },
     s3: {
         bucket: string
+    },
+    dynamoDB: {
+        tableName: string
     }
 }
