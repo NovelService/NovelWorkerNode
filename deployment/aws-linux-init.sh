@@ -27,4 +27,4 @@ git clone https://github.com/NovelService/NovelWorkerNode.git ~/app
 
 ## todo set env variables
 
-docker-compose up -d ~/app/deployment/docker-compose.yml
+docker-compose -f ~/app/deployment/docker-compose.yml up -d  

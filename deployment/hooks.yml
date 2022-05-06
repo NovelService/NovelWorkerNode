@@ -1,3 +1,6 @@
-- id: redeploy-webhook
-  execute-command: "~/deployment/redeploy.sh"
-  command-working-directory: "~/deployment"
+- id: redeploy
+  execute-command: "~/app/deployment/redeploy.sh"
+  command-working-directory: "~/app/deployment"
+- id: git-pull
+  execute-command: "~/app/deployment/git-pull.sh"
+  command-working-directory: "~/app/deployment"
