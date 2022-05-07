@@ -32,6 +32,7 @@ Description=Webhooks
 
 [Service]
 ExecStart=/usr/local/bin/webhook -hooks /home/ec2-user/app/deployment/hooks.json -hotreload -verbose
+User=ec2-user
 
 [Install]
 WantedBy=multi-user.target
