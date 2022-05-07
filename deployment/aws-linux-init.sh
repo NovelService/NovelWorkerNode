@@ -53,4 +53,4 @@ EOF
 touch /home/ec2-user/app/deployment/WEBHOOK_SECRET_SHA_1
 
 # start application
-docker-compose -f /home/ec2-user/app/deployment/docker-compose.yml up -d  
+docker-compose -f /home/ec2-user/app/deployment/docker-compose.yml up -d

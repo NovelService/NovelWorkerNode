@@ -10,4 +10,4 @@ services:
       - seccomp:seccomp.json
     deploy:
       mode: replicated
-      replicas: 1
+      replicas: 2
