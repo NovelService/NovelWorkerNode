@@ -5,9 +5,9 @@ services:
     restart: always
     pull_policy: always
     env_file:
-      - .env
+      - ".env"
     security_opt:
-      - seccomp:seccomp.json
+      - "seccomp:seccomp.json"
     deploy:
       mode: replicated
       replicas: 2

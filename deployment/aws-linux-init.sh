@@ -31,7 +31,7 @@ cat >> /etc/systemd/system/webhook.service<< EOF
 Description=Webhooks
 
 [Service]
-ExecStart=/usr/local/bin/webhook -hooks /home/ec2-user/app/deployment/hooks.json -hotreload
+ExecStart=/usr/local/bin/webhook -hooks /home/ec2-user/app/deployment/hooks.json -hotreload -verbose
 
 [Install]
 WantedBy=multi-user.target
@@ -51,6 +51,9 @@ TABLE=
 EOF
 
 touch /home/ec2-user/app/deployment/WEBHOOK_SECRET_SHA_1
+
+chown -R ec2-user /home/ec2-user/app/
+chmod 700 /home/ec2-user/app/deployment/redeploy.sh
 
 # start application
 docker-compose -f /home/ec2-user/app/deployment/docker-compose.yml up -d
