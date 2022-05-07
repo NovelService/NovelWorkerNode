@@ -8,7 +8,8 @@ declare module "percollate" {
     }
     
     interface PercollateOptions {
-        output: string
+        output: string,
+        wait: number
     }
 }
 

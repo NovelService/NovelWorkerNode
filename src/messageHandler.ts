@@ -8,9 +8,8 @@ import { Message } from './types/message.js';
 async function handleMessage(context: Context, messageString: string, converter = _converter) {
     console.log("Parameters are " + messageString)
     let message: Message = JSON.parse(messageString);
-    await converter.toEpub(message.urls, message.options);
+    const filename = await converter.toEpub(message.id, message.urls);
 
-    const filename = message.options.output;
     await fileHandler.saveFile(context, filename);
     const signedUrl = await fileHandler.createPresignedUrl(context, filename)
     await statusHandler.finishItem(context, message.id, signedUrl);
