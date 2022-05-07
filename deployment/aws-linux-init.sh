@@ -22,9 +22,10 @@ rm /usr/local/bin/webhook-linux-amd64.tar.gz
 rm -d /usr/local/bin/webhook-linux-amd64
 
 # application
-mkdir ~/app
-git clone https://github.com/NovelService/NovelWorkerNode.git ~/app
+mkdir /app
+git clone https://github.com/NovelService/NovelWorkerNode.git /app
+## todo register webhook as service https://davidauthier.com/blog/2017/09/07/deploy-using-github-webhooks/
 
-## todo set env variables
+## todo set env variables and webhook secret
 
-docker-compose -f ~/app/deployment/docker-compose.yml up -d  
+docker-compose -f /app/deployment/docker-compose.yml up -d  

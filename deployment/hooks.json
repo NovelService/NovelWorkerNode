@@ -1,0 +1,13 @@
+[
+    {
+      "id": "redeploy",
+      "execute-command": "redeploy.sh",
+      "command-working-directory": "/app/deployment/",
+      "pass-arguments-to-command": [
+        {
+          "source": "header",
+          "name": "X-Hub-Signature"
+        }
+      ]
+    }
+  ]
