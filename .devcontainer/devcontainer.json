@@ -5,7 +5,7 @@
 	// Sets the run context to one level up instead of the .devcontainer folder.
 	"context": "..",
 	// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
-	"image": "xiangronglin/puppeteer:10.2.0",
+	"image": "xiangronglin/puppeteer:test",
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
 		"terminal.integrated.defaultProfile.linux": "sh"
@@ -23,10 +23,9 @@
 	// Uncomment when using a ptrace-based debugger like C++, Go, and Rust
 	"runArgs": [
 		"--network",
-		"novelworkernode_default"
-		// "--cap-add=SYS_PTRACE",
-		// "--security-opt",
-		// "seccomp=unconfined"
+		"novelworkernode_default",
+		"--security-opt",
+		"seccomp=deployment/seccomp.json"
 	],
 	// Uncomment to use the Docker CLI from inside the container. See https://aka.ms/vscode-remote/samples/docker-from-docker.
 	// "mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
