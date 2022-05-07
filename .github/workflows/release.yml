@@ -53,5 +53,5 @@ jobs:
     steps:
       - name: Trigger deploy
         run: |
-          curl -X POST -H "X-Hub-Signature: sha1=${{ secrets.WEBHOOK_SHA_1 }}" http://${{ secrets.VM_URL }}:9000/hooks/redeploy\
+          curl -X POST -H "X-Hub-Signature: sha1=${{ secrets.WEBHOOK_SHA_1 }}" http://${{ secrets.VM_URL }}:9000/hooks/redeploy
             
