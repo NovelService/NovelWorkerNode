@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  novel-worker:
+    image: xiangronglin/novel-worker-node:latest
+    restart: always
+    pull_policy: always
+    env_file:
+      - .env
+    security_opt:
+      - seccomp:seccomp.json
+    deploy:
+      mode: replicated
+      replicas: 2
