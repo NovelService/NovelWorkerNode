@@ -22,16 +22,16 @@ rm /tmp/webhook-linux-amd64.tar.gz
 rm -d /tmp/webhook-linux-amd64
 
 # application
-mkdir /app
-git clone https://github.com/NovelService/NovelWorkerNode.git /app
-## todo register webhook as service https://davidauthier.com/blog/2017/09/07/deploy-using-github-webhooks/
+mkdir /home/ec2-user/app
+git clone https://github.com/NovelService/NovelWorkerNode.git /home/ec2-user/app
 
+# start webhook as service
 cat >> /etc/systemd/system/webhook.service<< EOF
 [Unit]
 Description=Webhooks
 
 [Service]
-ExecStart=/usr/local/bin/webhook -hooks /app/deployment/hooks.json -hotreload
+ExecStart=/usr/local/bin/webhook -hooks /home/ec2-user/app/deployment/hooks.json -hotreload
 
 [Install]
 WantedBy=multi-user.target
@@ -39,7 +39,8 @@ EOF
 systemctl enable webhook.service
 systemctl start webhook.service
 
-cat >> /app/deployment/.env <<EOF
+# prepare secrets
+cat >> /home/ec2-user/app/deployment/.env <<EOF
 ACCESS_KEY_ID=
 SECRET_ACCESS_KEY=
 REGION=
@@ -49,6 +50,7 @@ POLL_INTERVAL=
 TABLE=
 EOF
 
-echo "" > /app/deployment/WEBHOOK_SECRET_SHA_1
+touch /home/ec2-user/app/deployment/WEBHOOK_SECRET_SHA_1
 
-docker-compose -f /app/deployment/docker-compose.yml up -d  
+# start application
+docker-compose -f /home/ec2-user/app/deployment/docker-compose.yml up -d  
