@@ -2,8 +2,7 @@ import { UpdateItemCommand } from '@aws-sdk/client-dynamodb'
 import { Context } from './types/context.js'
 
 async function finishItem(context: Context, id: string, url: string) {
-    const command = new UpdateItemCommand(
-        {
+    const input = {
             TableName: context.config.aws.dynamoDB.tableName,
             Key: {
                 id: { S: id }
@@ -18,8 +17,8 @@ async function finishItem(context: Context, id: string, url: string) {
                 ':status': { S: 'done' }
             }
         }
-    )
-    console.log(`command ${command}`)
+    const command = new UpdateItemCommand(input)
+    console.log(`command ${JSON.stringify(input)}`)
     console.log(`Sending finish item message for item ${id}`)
     const response = await context.clients.dynamoDb.send(command)
     console.log(response)
