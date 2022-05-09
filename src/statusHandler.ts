@@ -1,5 +1,5 @@
-import { UpdateItemCommand } from "@aws-sdk/client-dynamodb";
-import { Context } from "./types/context.js";
+import { UpdateItemCommand } from '@aws-sdk/client-dynamodb'
+import { Context } from './types/context.js'
 
 async function finishItem(context: Context, id: string, url: string) {
     const command = new UpdateItemCommand(
@@ -8,20 +8,21 @@ async function finishItem(context: Context, id: string, url: string) {
             Key: {
                 id: { S: id }
             },
-            UpdateExpression: "set #u = :url, #s = :status",
+            UpdateExpression: 'set #u = :url, #s = :status',
             ExpressionAttributeNames: {
-                "#u": "url",
-                "#s": "status"
+                '#u': 'url',
+                '#s': 'status'
             },
             ExpressionAttributeValues: {
-                ":url": { S: url },
-                ":status": { S: "done" }
+                ':url': { S: url },
+                ':status': { S: 'done' }
             }
         }
-    );
-    console.log("Sending finish item message for item ");
-    const response = await context.clients.dynamoDb.send(command);
-    console.log(response);
+    )
+    console.log(`command ${command}`)
+    console.log(`Sending finish item message for item ${id}`)
+    const response = await context.clients.dynamoDb.send(command)
+    console.log(response)
 }
 
-export default { finishItem };
+export default { finishItem }
