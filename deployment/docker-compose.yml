@@ -10,4 +10,4 @@ services:
       - "seccomp:seccomp.json"
     deploy:
       mode: replicated
-      replicas: 2
+      replicas: 1 # Replicas can't be used until this is fixed: https://github.com/docker/compose/issues/9458
