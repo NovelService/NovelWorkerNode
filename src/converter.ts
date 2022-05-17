@@ -1,14 +1,14 @@
 import { epub, PercollateOptions } from "percollate"
 
-async function toEpub(id: string, urls: string[]) {
-    const options: PercollateOptions = {
-        output: `${id}.epub`,
-        wait: 2
+export class Converter {
+    async toEpub(id: string, urls: string[], epubFunction = epub) {
+        const options: PercollateOptions = {
+            output: `${id}.epub`,
+            wait: 2
+        }
+
+        await epubFunction(urls, options)
+        console.log(`finished converting epub. id ${id}`)
+        return options.output
     }
-
-    await epub(urls, options)
-    console.log(`finished converting epub. id ${id}`)
-    return options.output
 }
-
-export default { toEpub };
