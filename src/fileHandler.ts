@@ -22,10 +22,11 @@ async function saveFile(context: Context, filename: string) {
 
 
 async function createPresignedUrl(context: Context, filename: string): Promise<string> {
-    // From https://aws.amazon.com/blogs/developer/generate-presigned-url-modular-aws-sdk-javascript/
-    const unsignedUrl = parseUrl(`https://${context.config.aws.s3.bucket}.s3.${context.config.aws.region}.amazonaws.com/${filename}`)
-    const signedUrl = await context.clients.s3Presigner.presign(new HttpRequest(unsignedUrl), { expiresIn: oneDay})
+    // From https://aws.amazon.com/blogs/developer/generate-presigned-url-modular-aws-sdk-javascript
+    const host = context.config.aws.host ?? 'amazonaws.com'
+    const unsignedUrl = parseUrl(`https://${context.config.aws.s3.bucket}.s3.${context.config.aws.region}.${host}/${filename}`)
+    const signedUrl = await context.clients.s3Presigner.presign(new HttpRequest(unsignedUrl), {expiresIn: oneDay})
     return formatUrl(signedUrl)
 }
 
-export default { saveFile, createPresignedUrl }
+export default {saveFile, createPresignedUrl}

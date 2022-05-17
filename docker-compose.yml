@@ -11,7 +11,7 @@ services:
       - "127.0.0.1:4510-4559:4510-4559"  # external service port range
       - "127.0.0.1:4566:4566"            # LocalStack Edge Proxy
     environment:
-      - SERVICES=s3,sqs
+      - SERVICES=s3,sqs,dynamodb
       - DEBUG=0
       # - DATA_DIR=${DATA_DIR-}
       - HOST_TMP_FOLDER=${TMP}/localstack

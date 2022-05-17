@@ -9,6 +9,7 @@ interface AWSConfig {
     credentials: Credentials,
     region: string,
     endpoint?: string,
+    host?: string,
     sqs: {
         queueUrl: string
     },

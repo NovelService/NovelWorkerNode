@@ -28,17 +28,19 @@ const context: Context = {
         }),
         s3Presigner: new S3RequestPresigner({
             region: config.aws.region,
-            credentials: config.aws.credentials, 
-            sha256: Hash.bind(null, "sha256")
+            credentials: config.aws.credentials,
+            sha256: Hash.bind(null, "sha256"),
         }),
         dynamoDb: new DynamoDBClient({
             region: config.aws.region,
             credentials: config.aws.credentials,
+            endpoint: config.aws.endpoint
         })
     }
 }
 
 messageListener.start(context);
+console.log("message listener started")
 
 function readConfig(): Config {
     return {
@@ -49,6 +51,7 @@ function readConfig(): Config {
             },
             region: getEnvOrThrow("REGION"),
             endpoint: process.env.ENDPOINT,
+            host: process.env.HOST,
             sqs: {
                 queueUrl: getEnvOrThrow("QUEUE_URL")
             },

@@ -9,6 +9,10 @@ Run following commands to start it and create the necessary aws services:
 docker compose up -d
 awslocal sqs create-queue --queue-name queue
 awslocal s3api create-bucket --bucket bucket
+awslocal dynamodb create-table --table-name table --attribute-definitions AttributeName=id,AttributeType=S --key-schema AttributeName=id,KeyType=HASH --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
+```
+```
+awslocal sqs send-message --queue-url http://localhost:4566/00000000000/queue --message-body "{\"id\":\"703c1dfd-bdb3-4c47-82b6-c554f0e6e848\",\"urls\":[\"https://novelservice.github.io/\"],\"options\": {}}"
 ```
 
 ## Config
@@ -19,10 +23,12 @@ Provided values are configured to localstack default values.
 ACCESS_KEY_ID=what
 SECRET_ACCESS_KEY=ever
 REGION=us-east-1
-QUEUE_URL=http://localstack:4566/000000000000/queue
-ENDPOINT=http://localstack:4566/
+QUEUE_URL=http://localhost:4566/000000000000/queue
+ENDPOINT=http://localhost:4566
+HOST=localhost:4566
 BUCKET=bucket
-POLL_INTERVAL=20000
+POLL_INTERVAL=5000
+TABLE=table
 ```
 
 ### Permissions
