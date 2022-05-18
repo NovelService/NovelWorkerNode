@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto'
 import { PercollateOptions } from 'percollate'
-import { Converter } from '../converter.js'
+import { Converter } from '../converter'
 
 describe('Converter', () => {
 
@@ -15,7 +15,7 @@ describe('Converter', () => {
         await converter.toEpub(id, urls, stub)
 
         // then
-        let expectedOptions = {
+        let expectedOptions: PercollateOptions = {
             output: `${id}.epub`,
             wait: 2
         }

@@ -29,15 +29,30 @@
     "typescript": "^4.6.4"
   },
   "jest": {
+    "globals": {
+      "ts-jest": {
+        "useESM": true
+      }
+    },
+    "moduleNameMapper": {
+      "^(\\.{1,2}/.*)\\.js$": "$1"
+    },
     "transform": {
       "^.+\\.ts?$": "ts-jest"
     },
-    "extensionsToTreatAsEsm": [".ts"],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(percollate|puppeteer))",
+      "puppeteer",
+      "@types/percollate"
+    ],
+    "extensionsToTreatAsEsm": [
+      ".ts",
+      ".tsx"
+    ],
     "testEnvironment": "node",
     "coveragePathIgnorePatterns": [
       "node_modules/",
-      "src/types",
-      "src/@types"
+      "src/types"
     ],
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.ts?$",
     "testPathIgnorePatterns": [
