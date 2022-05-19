@@ -1,14 +1,15 @@
-import { Context } from "./types/context.js"
-import { HttpRequest } from "@aws-sdk/protocol-http"
-import { parseUrl } from "@aws-sdk/url-parser"
-import { PutObjectCommand } from "@aws-sdk/client-s3"
-import { formatUrl } from "@aws-sdk/util-format-url"
+import { PutObjectCommand } from '@aws-sdk/client-s3'
+import { HttpRequest } from '@aws-sdk/protocol-http'
+import { parseUrl } from '@aws-sdk/url-parser'
+import { formatUrl } from '@aws-sdk/util-format-url'
 import { readFileSync } from 'fs'
+import path from 'path'
+import { Context } from './types/context.js'
 
 const oneDay = 86400
 
-async function saveFile(context: Context, filename: string) {
-    const body = readFileSync("./" + filename)
+async function saveFile(context: Context, filepath: string, filename: string) {
+    const body = readFileSync(path.join(filepath, filename))
     const command = new PutObjectCommand(
         {
             Bucket: context.config.aws.s3.bucket,
