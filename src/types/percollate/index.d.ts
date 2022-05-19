@@ -6,7 +6,7 @@ declare module "percollate" {
         items: object[],
         options: PercollateOptions
     }
-    
+
     interface PercollateOptions {
         output: string,
         wait: number
