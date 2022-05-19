@@ -17,6 +17,7 @@ USER root
 COPY --from=build /home/user/build/dist/ ./dist/
 COPY package.json package-lock.json ./
 RUN npm install -g npm@8.10.0 && npm install
+RUN chown -R chrome /app/
 
 USER chrome
 
