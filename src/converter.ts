@@ -5,7 +5,7 @@ import { epub, PercollateOptions } from 'percollate'
 
 const workDir = path.join(os.tmpdir(), 'novelservice')
 if (!fs.existsSync(workDir)) {
-    fs.mkdirSync(workDir, {mode: 660})
+    fs.mkdirSync(workDir)
 }
 
 export class Converter {
