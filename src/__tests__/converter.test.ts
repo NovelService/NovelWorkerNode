@@ -1,4 +1,5 @@
 import { randomUUID } from 'crypto'
+import path from 'path'
 import { PercollateOptions } from 'percollate'
 import { Converter } from '../converter'
 
@@ -12,11 +13,11 @@ describe('Converter', () => {
         const stub = jest.fn()
 
         // when
-        await converter.toEpub(id, urls, stub)
+        const {filepath, filename} = await converter.toEpub(id, urls, stub)
 
         // then
         let expectedOptions: PercollateOptions = {
-            output: `${id}.epub`,
+            output: path.join(filepath, filename),
             wait: 2
         }
         expect(stub).toBeCalledWith(urls, expectedOptions)
