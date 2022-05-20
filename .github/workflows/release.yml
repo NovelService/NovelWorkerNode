@@ -11,11 +11,15 @@ on:
       - master
     paths-ignore:
       - "README.md"
-      - ".devcontainer"
       - ".vscode"
 
 jobs:
+  test:
+    uses: ./.github/workflows/ci.yaml
+
   build-and-release:
+    needs:
+      - test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
