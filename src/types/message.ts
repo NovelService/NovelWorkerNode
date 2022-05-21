@@ -4,6 +4,6 @@ export interface Message {
     options: Options
 }
 
-interface Options {
+export interface Options {
     output: string
 }

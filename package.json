@@ -5,6 +5,8 @@
   "main": "./dist/index.js",
   "type": "module",
   "scripts": {
+    "start-localstack": "docker compose up -d",
+    "create-localstack-resources": "create-localstack-resources.sh",
     "test": "jest",
     "docker-build": "docker build -t novelworkernode:latest ."
   },

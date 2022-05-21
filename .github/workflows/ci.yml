@@ -15,5 +15,11 @@ jobs:
         with:
           node-version: 16
           cache: npm
+
       - run: npm ci
+      - name: setup environment variables
+        run: source local.env
+      - run: npm run start-localstack
+      - run: npm run create-localstack-resources
+
       - run: npm test
