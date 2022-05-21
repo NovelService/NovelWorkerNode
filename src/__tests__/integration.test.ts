@@ -5,7 +5,13 @@ import {
 } from '@aws-sdk/client-dynamodb'
 import { S3Client } from '@aws-sdk/client-s3'
 import { SendMessageCommand, SQSClient } from '@aws-sdk/client-sqs'
+import { unmarshall } from '@aws-sdk/util-dynamodb'
 import { randomUUID } from 'crypto'
+import * as fs from 'fs'
+import * as http from 'http'
+import * as https from 'https'
+import os from 'os'
+import path from 'path'
 import { Message } from '../types/message'
 
 describe('Integration tests', () => {
@@ -71,9 +77,24 @@ describe('Integration tests', () => {
             TableName: tableName,
             Key: {'id': {S: id}}
         })
-        await new Promise((r) => setTimeout(r, 20000))
-        const getItemResponse = await dynamoDBClient.send(getItemCommand)
-        console.log(getItemResponse)
-    }, 30000)
+        let isDone = false
+        while (!isDone) {
+            const {Item} = await dynamoDBClient.send(getItemCommand)
+            const itemObject = unmarshall(Item)
+            console.log(itemObject)
+            if (itemObject.status === 'done') {
+                isDone = true
+                expect(itemObject.url).not.toBeUndefined()
+                const novel = fs.createWriteStream(path.join(os.tmpdir(), randomUUID() + '.epub'))
+                const request = https.get(itemObject.url, res => {
+                    res.pipe(novel)
+                    novel.on('finish', () => {
+                        novel.close()
+                    })
+                })
+            }
+            await new Promise((r) => setTimeout(r, 1000))
+        }
+    }, 10000)
 
 })
