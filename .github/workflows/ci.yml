@@ -30,7 +30,7 @@ jobs:
       - run: npm run integration-test
       - name: extract logs
         if: ${{ failure() }}
-        run: docker compose logs > docker-compose.logs
+        run: docker compose logs > docker-compose.log
       - name: upload logs
         if: ${{ failure() }}
         uses: actions/upload-artifact@v3
