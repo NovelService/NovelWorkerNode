@@ -7,23 +7,26 @@ on:
   workflow_call:
 
 jobs:
-#  unit-tests:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v3
-#      - uses: actions/setup-node@v3
-#        with:
-#          node-version: 16
-#          cache: npm
-#      - run: npm ci
-#      - run: npm run unit-test
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+      - run: npm ci
+      - run: npm run unit-test
 
   integration-tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - run: docker compose -f docker-compose.ci.yml up -d
-      - run: docker ps -a
-      - run: curl "http://localhost:4566"
+      - name: Wait for Localstack to be running
+      - run: |
+          until [ "$(curl -s "http://localhost:4566/" | jq '.status == "running"')" ]; do
+            sleep 1
+          done
       - run: chmod 500 create-localstack-resources.sh && ./create-localstack-resources.sh
-#      - run: npm run integration-test
+      - run: npm run integration-test
