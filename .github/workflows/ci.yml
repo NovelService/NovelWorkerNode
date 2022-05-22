@@ -7,7 +7,7 @@ on:
   workflow_call:
 
 jobs:
-  test:
+  unit-tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
