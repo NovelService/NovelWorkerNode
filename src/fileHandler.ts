@@ -24,8 +24,9 @@ async function saveFile(context: Context, filepath: string, filename: string) {
 
 async function createPresignedUrl(context: Context, filename: string): Promise<string> {
     // From https://aws.amazon.com/blogs/developer/generate-presigned-url-modular-aws-sdk-javascript
-    const host = context.config.aws.host ?? 'amazonaws.com'
-    const unsignedUrl = parseUrl(`https://${context.config.aws.s3.bucket}.s3.${context.config.aws.region}.${host}/${filename}`)
+
+    const host = context.config.aws.s3.localstackBaseUrl ?? `s3.${context.config.aws.region}.amazonaws.com`
+    const unsignedUrl = parseUrl(`https://${context.config.aws.s3.bucket}.${host}/${filename}`)
     const signedUrl = await context.clients.s3Presigner.presign(new HttpRequest(unsignedUrl), {expiresIn: oneDay})
     return formatUrl(signedUrl)
 }

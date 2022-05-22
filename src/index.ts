@@ -45,20 +45,22 @@ messageListener.start(context);
 console.log("message listener started")
 
 function readConfig(): Config {
+    console.log("readConfig")
+    console.log(process.env['LOCALSTACK_S3_BASE_URL'])
     return {
         aws: {
             credentials: {
-                accessKeyId: getEnvOrThrow("ACCESS_KEY_ID"),
-                secretAccessKey: getEnvOrThrow("SECRET_ACCESS_KEY"),
+                accessKeyId: getEnvOrThrow('ACCESS_KEY_ID'),
+                secretAccessKey: getEnvOrThrow('SECRET_ACCESS_KEY'),
             },
-            region: getEnvOrThrow("REGION"),
+            region: getEnvOrThrow('REGION'),
             endpoint: process.env.ENDPOINT,
-            host: process.env.HOST,
             sqs: {
-                queueUrl: getEnvOrThrow("QUEUE_URL")
+                queueUrl: getEnvOrThrow('QUEUE_URL')
             },
             s3: {
-                bucket: getEnvOrThrow("BUCKET")
+                bucket: getEnvOrThrow('BUCKET'),
+                localstackBaseUrl: process.env['LOCALSTACK_S3_BASE_URL']
             },
             dynamoDB: {
                 tableName: getEnvOrThrow("TABLE")

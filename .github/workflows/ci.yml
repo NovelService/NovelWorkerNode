@@ -15,19 +15,13 @@ jobs:
         with:
           node-version: 16
           cache: npm
-
       - run: npm ci
-      - name: setup environment variables
-        run: source .env
-      - run: npm run start-localstack
-      - run: npm run create-localstack-resources
+      - run: npm run unit-test
 
-      - run: npm test
-
-  integration-test:
+  integration-tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: npm run start-localstack
+      - run: docker compose -f docker-compose.ci.yml up -d
       - run: npm run create-localstack-resources
-      - run: docker compose -f docker-compose.ci.yml  up -d
+      - run: npm run integration-test
