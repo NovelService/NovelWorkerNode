@@ -7,7 +7,7 @@ on:
   workflow_call:
 
 jobs:
-  tests:
+  unit-test:
     runs-on: ubuntu-latest
     env:
       PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 1
@@ -19,6 +19,17 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run unit-test
+  integration-test:
+    runs-on: ubuntu-latest
+    env:
+      PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 1
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+      - run: npm ci
 
       - run: docker compose -f docker-compose.ci.yml up -d
       - name: Wait for Localstack to be running
@@ -27,7 +38,9 @@ jobs:
             sleep 1
           done
       - run: chmod 500 create-localstack-resources.sh && ./create-localstack-resources.sh
+
       - run: npm run integration-test
+
       - name: extract logs
         if: ${{ failure() }}
         run: docker compose logs > docker-compose.log
