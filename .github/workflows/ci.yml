@@ -28,4 +28,3 @@ jobs:
           done
       - run: chmod 500 create-localstack-resources.sh && ./create-localstack-resources.sh
       - run: npm run integration-test
-
