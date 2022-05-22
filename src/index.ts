@@ -4,7 +4,6 @@ import { SQSClient } from '@aws-sdk/client-sqs'
 import { Hash } from '@aws-sdk/hash-node'
 import { S3RequestPresigner } from '@aws-sdk/s3-request-presigner'
 
-import 'dotenv/config'
 import messageListener from './messageListener.js'
 import { Config } from './types/config.js'
 import { Context } from './types/context.js'
