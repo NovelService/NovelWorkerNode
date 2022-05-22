@@ -1,8 +1,11 @@
-import { UpdateItemCommand } from '@aws-sdk/client-dynamodb'
+import {
+    UpdateItemCommand,
+    UpdateItemCommandInput
+} from '@aws-sdk/client-dynamodb'
 import { Context } from './types/context.js'
 
 async function finishItem(context: Context, id: string, url: string) {
-    const input = {
+    const input : UpdateItemCommandInput = {
             TableName: context.config.aws.dynamoDB.tableName,
             Key: {
                 id: { S: id }

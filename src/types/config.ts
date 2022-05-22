@@ -9,12 +9,12 @@ interface AWSConfig {
     credentials: Credentials,
     region: string,
     endpoint?: string,
-    host?: string,
     sqs: {
         queueUrl: string
     },
     s3: {
         bucket: string
+        localstackBaseUrl?: string
     },
     dynamoDB: {
         tableName: string

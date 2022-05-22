@@ -5,7 +5,8 @@
   "main": "./dist/index.js",
   "type": "module",
   "scripts": {
-    "test": "jest",
+    "unit-test": "jest --testPathIgnorePatterns=\"integration/|node_modules/|dist/\"",
+    "integration-test": "jest --testPathIgnorePatterns=\"src/|node_modules/|dist/\"",
     "docker-build": "docker build -t novelworkernode:latest ."
   },
   "author": "Xiang Rong Lin",
@@ -15,12 +16,14 @@
     "@aws-sdk/client-s3": "3.82.0",
     "@aws-sdk/client-sqs": "3.82.0",
     "@aws-sdk/s3-request-presigner": "3.82.0",
+    "@aws-sdk/util-dynamodb": "^3.95.0",
     "percollate": "2.1.0"
   },
   "overrides": {
     "puppeteer": "13.7.0"
   },
   "devDependencies": {
+    "@swc/core": "^1.2.189",
     "@swc/jest": "^0.2.21",
     "@tsconfig/node16": "^1.0.2",
     "@types/jest": "^27.5.1",

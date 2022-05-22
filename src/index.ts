@@ -1,16 +1,17 @@
-import { Config } from "./types/config.js"
-import { Context } from "./types/context.js"
-import messageListener from './messageListener.js';
+import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
+import { S3Client } from '@aws-sdk/client-s3'
+import { SQSClient } from '@aws-sdk/client-sqs'
+import { Hash } from '@aws-sdk/hash-node'
+import { S3RequestPresigner } from '@aws-sdk/s3-request-presigner'
 
-import { S3Client } from "@aws-sdk/client-s3";
-import { SQSClient } from "@aws-sdk/client-sqs";
-import { S3RequestPresigner } from "@aws-sdk/s3-request-presigner";
-import { Hash } from "@aws-sdk/hash-node";
-import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import messageListener from './messageListener.js'
+import { Config } from './types/config.js'
+import { Context } from './types/context.js'
 
-console.log("start");
 
-const config = readConfig();
+console.log('start')
+
+const config = readConfig()
 
 const context: Context = {
     config: config,
@@ -43,20 +44,21 @@ messageListener.start(context);
 console.log("message listener started")
 
 function readConfig(): Config {
+    console.log("readConfig")
     return {
         aws: {
             credentials: {
-                accessKeyId: getEnvOrThrow("ACCESS_KEY_ID"),
-                secretAccessKey: getEnvOrThrow("SECRET_ACCESS_KEY"),
+                accessKeyId: getEnvOrThrow('ACCESS_KEY_ID'),
+                secretAccessKey: getEnvOrThrow('SECRET_ACCESS_KEY'),
             },
-            region: getEnvOrThrow("REGION"),
+            region: getEnvOrThrow('REGION'),
             endpoint: process.env.ENDPOINT,
-            host: process.env.HOST,
             sqs: {
-                queueUrl: getEnvOrThrow("QUEUE_URL")
+                queueUrl: getEnvOrThrow('QUEUE_URL')
             },
             s3: {
-                bucket: getEnvOrThrow("BUCKET")
+                bucket: getEnvOrThrow('BUCKET'),
+                localstackBaseUrl: process.env['LOCALSTACK_S3_BASE_URL']
             },
             dynamoDB: {
                 tableName: getEnvOrThrow("TABLE")
