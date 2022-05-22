@@ -46,7 +46,7 @@ describe('Integration tests', () => {
         // given
         const message: Message = {
             id: id,
-            urls: ['https://novelservice.github.io/'],
+            urls: ['https://novelservice.github.io/', 'https://novelservice.github.io/'],
             options: {
                 output: 'to-be-removed'
             }
@@ -84,4 +84,5 @@ describe('Integration tests', () => {
             throw Error('Job was not finished in 5 seconds')
         }
     }, 10000)
+
 })
