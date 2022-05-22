@@ -7,8 +7,10 @@ on:
   workflow_call:
 
 jobs:
-  unit-tests:
+  tests:
     runs-on: ubuntu-latest
+    env:
+      PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 1
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -18,10 +20,6 @@ jobs:
       - run: npm ci
       - run: npm run unit-test
 
-  integration-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
       - run: docker compose -f docker-compose.ci.yml up -d
       - name: Wait for Localstack to be running
         run: |
@@ -30,3 +28,4 @@ jobs:
           done
       - run: chmod 500 create-localstack-resources.sh && ./create-localstack-resources.sh
       - run: npm run integration-test
+
