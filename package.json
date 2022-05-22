@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "unit-test": "jest --testPathIgnorePatterns=\"integration/|node_modules/|dist/\"",
-    "integration-test": "jest --testPathIgnorePatterns=\"src/|node_modules/|dist/\" --detectOpenHandles",
+    "integration-test": "jest --testPathIgnorePatterns=\"src/|node_modules/|dist/\"",
     "docker-build": "docker build -t novelworkernode:latest ."
   },
   "author": "Xiang Rong Lin",
