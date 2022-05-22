@@ -2,9 +2,9 @@ FROM node:16-alpine3.15 as build
 
 WORKDIR /home/user/build
 
-RUN npm install typescript@4.6.4
+RUN npm install -g typescript@4.6.4
 COPY . .
-RUN node_modules/.bin/tsc
+RUN tsc
 
 FROM zenika/alpine-chrome:101-with-node-16
 
