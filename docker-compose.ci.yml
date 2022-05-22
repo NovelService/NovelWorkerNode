@@ -8,8 +8,8 @@ services:
     image: localstack/localstack
     hostname: "localstack"
     ports:
-      - "4510-4559:4510-4559"  # external service port range
-      - "4566:4566"            # LocalStack Edge Proxy
+      - "127.0.0.1:4510-4559:4510-4559"  # external service port range
+      - "127.0.0.1:4566:4566"            # LocalStack Edge Proxy
     environment:
       - SERVICES=s3,sqs,dynamodb
       - DEBUG=0
@@ -19,7 +19,9 @@ services:
     volumes:
       - "${TMPDIR:-/tmp}/localstack:/tmp/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
-
+#    healthcheck:
+#      test: ["CMD", "curl", "-f", "http://localhost:4566"]
+#
   novelworkernode:
     build:
       dockerfile: Dockerfile
