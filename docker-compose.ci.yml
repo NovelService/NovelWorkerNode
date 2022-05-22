@@ -1,8 +1,6 @@
 version: "3.8"
 
 services:
-  # Start localstack per docker compose to have it in a separate network with a consistent hostname.
-  # The hostname can then be referenced in the application configuration.
   localstack:
     container_name: "localstack_main"
     image: localstack/localstack
@@ -19,12 +17,6 @@ services:
     volumes:
       - "${TMPDIR:-/tmp}/localstack:/tmp/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
-    healthcheck:
-      test: [ "CMD", "curl", "-s", "http://localhost:4566", "|", "jq", "'.status == \"running\"'", "-e" ]
-      interval: 1m30s
-      timeout: 5s
-      retries: 3
-      start_period: 5s
 
   novelworkernode:
     build:

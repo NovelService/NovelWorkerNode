@@ -1,3 +1,4 @@
+import exp from 'constants'
 import { randomUUID } from 'crypto'
 import path from 'path'
 import { PercollateOptions } from 'percollate'
@@ -5,6 +6,7 @@ import { Converter } from '../converter'
 
 describe('Converter', () => {
 
+    let a = 1
     test('Calls percollate with correct values', async () => {
         // given
         const converter = new Converter()

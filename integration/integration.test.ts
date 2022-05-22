@@ -57,7 +57,7 @@ describe('Integration tests', () => {
         })
 
         // when
-        const sqsResponse = await sqsClient.send(sendMessageCommand)
+        await sqsClient.send(sendMessageCommand)
 
         // then
         const getItemCommand = new GetItemCommand({

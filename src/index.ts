@@ -45,7 +45,6 @@ console.log("message listener started")
 
 function readConfig(): Config {
     console.log("readConfig")
-    console.log(process.env['LOCALSTACK_S3_BASE_URL'])
     return {
         aws: {
             credentials: {
