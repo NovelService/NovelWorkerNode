@@ -5,8 +5,6 @@
   "main": "./dist/index.js",
   "type": "module",
   "scripts": {
-    "start-localstack": "docker compose up -d",
-    "create-localstack-resources": "create-localstack-resources.sh",
     "unit-test": "jest --testPathIgnorePatterns=\"integration/|node_modules/|dist/\"",
     "integration-test": "jest --testPathIgnorePatterns=\"src/|node_modules/|dist/\"",
     "docker-build": "docker build -t novelworkernode:latest ."
@@ -46,6 +44,7 @@
       "node_modules/",
       "src/types"
     ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.ts?$",
     "testPathIgnorePatterns": [
       "node_modules/",
       "dist/"
