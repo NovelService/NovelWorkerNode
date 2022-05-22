@@ -22,10 +22,10 @@ services:
 #    healthcheck:
 #      test: ["CMD", "curl", "-f", "http://localhost:4566"]
 #
-  novelworkernode:
-    build:
-      dockerfile: Dockerfile
-    env_file:
-      - local.env
-    security_opt:
-      - seccomp:deployment/seccomp.json
+#  novelworkernode:
+#    build:
+#      dockerfile: Dockerfile
+#    env_file:
+#      - local.env
+#    security_opt:
+#      - seccomp:deployment/seccomp.json
