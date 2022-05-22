@@ -25,11 +25,11 @@ services:
       timeout: 5s
       retries: 3
       start_period: 5s
-#
-#  novelworkernode:
-#    build:
-#      dockerfile: Dockerfile
-#    env_file:
-#      - local.env
-#    security_opt:
-#      - seccomp:deployment/seccomp.json
+
+  novelworkernode:
+    build:
+      dockerfile: Dockerfile
+    env_file:
+      - local.env
+    security_opt:
+      - seccomp:deployment/seccomp.json
