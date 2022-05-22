@@ -2,9 +2,9 @@ FROM node:16-alpine3.15 as build
 
 WORKDIR /home/user/build
 
+RUN npm install -g typescript@4.6.4 npm@8.10.0
 COPY . .
-RUN npm install typescript
-RUN node_modules/.bin/tsc
+RUN npm install && tsc
 
 FROM zenika/alpine-chrome:101-with-node-16
 
@@ -14,9 +14,9 @@ ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/chromium-browser
 WORKDIR /app
 USER root
 
-COPY --from=build /home/user/build/dist/ ./dist/
 COPY package.json package-lock.json ./
 RUN npm install -g npm@8.10.0 && npm install
+COPY --from=build /home/user/build/dist/ ./dist/
 RUN chown -R chrome /app/
 
 USER chrome

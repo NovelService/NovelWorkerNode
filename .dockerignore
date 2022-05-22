@@ -2,6 +2,7 @@
 **/.dockerignore
 **/.env
 **/.git
+**/.github
 **/.gitignore
 **/.project
 **/.settings
@@ -12,13 +13,18 @@
 **/*.dbmdl
 **/*.jfm
 **/charts
+**/deployment
 **/docker-compose*
 **/compose*
 **/Dockerfile*
+**/integration
 **/node_modules
 **/npm-debug.log
 **/obj
 **/secrets.dev.yaml
 **/values.dev.yaml
 **/dist
+*.sh
+local.env
+LICENSE
 README.md
