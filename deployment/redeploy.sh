@@ -7,6 +7,7 @@ if [ $PROVIDED_SECRET != $WEBHOOK_SECRET ]; then
     exit 1
 fi
 
+docker image prune -af
 git pull
 docker-compose down
 docker-compose up -d 
