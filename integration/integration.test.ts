@@ -42,6 +42,11 @@ describe('Integration tests', () => {
         await dynamoDBClient.send(putItemCommand)
     })
 
+    afterEach(async () => {
+        dynamoDBClient.destroy()
+        sqsClient.destroy()
+    })
+
     test('Send epub job and download epub', async () => {
         // given
         const message: Message = {
