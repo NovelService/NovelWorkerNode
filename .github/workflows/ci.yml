@@ -24,8 +24,8 @@ jobs:
         run: |
           until [ "$(curl -s "http://localhost:4566/" | jq '.status == "running"')" ]; do
             sleep 10
-            docker logs localstack_main
-            curl -s "http://localhost:4566/"
+            curl "http://localhost:4566/"
+            curl -s "http://localhost:4566/" | jq '.status == "running"'
           done
       - run: chmod 500 create-localstack-resources.sh && ./create-localstack-resources.sh
 
