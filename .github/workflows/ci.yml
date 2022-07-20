@@ -7,18 +7,6 @@ on:
   workflow_call:
 
 jobs:
-  unit-test:
-    runs-on: ubuntu-latest
-    env:
-      PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 1
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: npm
-      - run: npm ci
-      - run: npm run unit-test
   integration-test:
     runs-on: ubuntu-latest
     env:
@@ -35,6 +23,8 @@ jobs:
       - name: Wait for Localstack to be running
         run: |
           until [ "$(curl -s "http://localhost:4566/" | jq '.status == "running"')" ]; do
+            curl -s "http://localhost:4566/"
+            docker logs localstack_main
             sleep 1
           done
       - run: chmod 500 create-localstack-resources.sh && ./create-localstack-resources.sh
