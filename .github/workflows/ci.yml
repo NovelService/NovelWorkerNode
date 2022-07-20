@@ -19,13 +19,15 @@ jobs:
           cache: npm
       - run: docker compose -f docker-compose.ci.yml up -d
       - name: Wait for Localstack to be running
-        run: |
-          until [ "$(curl --insecure -s "localhost:4566" | jq '.status == "running"')" ]; do
-            sleep 10
-            docker ps -a
-            curl --insecure -v "127.0.0.1:4566"
-            curl --insecure -v -s "127.0.0.1:4566" | jq '.status == "running"'
-          done
+        run: sleep 15s
+        # curl return exit code 52 for some reason
+        # run: |
+        #   until [ "$(curl --insecure -s "localhost:4566" | jq '.status == "running"')" ]; do
+        #     sleep 10
+        #     docker ps -a
+        #     curl --insecure -v "127.0.0.1:4566"
+        #     curl --insecure -v -s "127.0.0.1:4566" | jq '.status == "running"'
+        #   done
       - run: chmod 500 create-localstack-resources.sh && ./create-localstack-resources.sh
 
       - run: npm ci
