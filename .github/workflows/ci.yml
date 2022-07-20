@@ -33,10 +33,12 @@ jobs:
 
       - run: docker compose -f docker-compose.ci.yml up -d
       - name: Wait for Localstack to be running
-        run: |
-          until [ "$(curl -s "http://localhost:4566/" | jq '.status == "running"')" ]; do
-            sleep 1
-          done
+        run: sleep 15s
+        # curl fails with exit code 52 for some reason
+        # run: |
+        #   until [ "$(curl -s "http://localhost:4566/" | jq '.status == "running"')" ]; do
+        #     sleep 1
+        #   done
       - run: chmod 500 create-localstack-resources.sh && ./create-localstack-resources.sh
 
       - run: npm run integration-test
