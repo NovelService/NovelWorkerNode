@@ -20,11 +20,11 @@ jobs:
       - run: docker compose -f docker-compose.ci.yml up -d
       - name: Wait for Localstack to be running
         run: |
-          until [ "$(curl -s "http://localhost:4566/" | jq '.status == "running"')" ]; do
+          until [ "$(curl --insecure -s "http://localhost:4566/" | jq '.status == "running"')" ]; do
             sleep 10
             docker ps -a
-            curl "http://127.0.0.1:4566/"
-            curl -s "http://127.0.0.1:4566/" | jq '.status == "running"'
+            curl --insecure "http://127.0.0.1:4566/"
+            curl --insecure -s "http://127.0.0.1:4566/" | jq '.status == "running"'
           done
       - run: chmod 500 create-localstack-resources.sh && ./create-localstack-resources.sh
 
