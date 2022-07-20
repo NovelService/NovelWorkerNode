@@ -24,6 +24,7 @@ jobs:
         run: |
           until [ "$(curl -s "http://localhost:4566/" | jq '.status == "running"')" ]; do
             sleep 10
+            docker ps -a
             curl "http://localhost:4566/"
             curl -s "http://localhost:4566/" | jq '.status == "running"'
           done
