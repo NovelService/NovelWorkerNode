@@ -17,8 +17,6 @@ jobs:
         with:
           node-version: 16
           cache: npm
-      - run: npm ci
-
       - run: docker compose -f docker-compose.ci.yml up -d
       - name: Wait for Localstack to be running
         run: |
@@ -30,6 +28,7 @@ jobs:
           done
       - run: chmod 500 create-localstack-resources.sh && ./create-localstack-resources.sh
 
+      - run: npm ci
       - run: npm run integration-test
 
       - name: extract logs
