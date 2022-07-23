@@ -16,7 +16,7 @@
     "@aws-sdk/client-s3": "3.135.0",
     "@aws-sdk/client-sqs": "3.131.0",
     "@aws-sdk/s3-request-presigner": "3.135.0",
-    "@aws-sdk/util-dynamodb": "^3.118.1",
+    "@aws-sdk/util-dynamodb": "^3.131.0",
     "percollate": "2.2.0"
   },
   "overrides": {
