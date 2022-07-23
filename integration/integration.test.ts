@@ -70,7 +70,7 @@ describe('Integration tests', () => {
             Key: marshall({'id': id})
         })
         let isDone = false
-        let retries = 10
+        let retries = 50
         while (!isDone && retries > 0) {
             const {Item} = await dynamoDBClient.send(getItemCommand)
             expect(Item).not.toBeUndefined()
@@ -80,10 +80,11 @@ describe('Integration tests', () => {
                 expect(itemObject.url).not.toBeUndefined()
                 https.get(itemObject.url, (res) => {
                     expect(res.statusCode).toBe(200)
+                    res.destroy()
                 })
             }
             retries--
-            await new Promise((r) => setTimeout(r, 1000))
+            await new Promise((r) => setTimeout(r, 200))
         }
         if (retries === 0) {
             throw Error('Job was not finished in 5 seconds')
