@@ -78,16 +78,19 @@ describe('Integration tests', () => {
             if (itemObject.status === 'done') {
                 isDone = true
                 expect(itemObject.url).not.toBeUndefined()
-                https.get(itemObject.url, (res) => {
-                    expect(res.statusCode).toBe(200)
-                    res.destroy()
-                })
+                await new Promise<void>((resolve => {
+                    https.get(itemObject.url, (res) => {
+                        res.destroy()
+                        expect(res.statusCode).toBe(200)
+                        resolve()
+                    })
+                }))
             }
             retries--
-            await new Promise((r) => setTimeout(r, 200))
+            await new Promise((resolve) => setTimeout(resolve, 200))
         }
         if (retries === 0) {
-            throw Error('Job was not finished in 5 seconds')
+            throw Error('Job was not finished in 10 seconds')
         }
     }, 15000)
 
