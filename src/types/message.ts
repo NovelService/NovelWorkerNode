@@ -5,5 +5,11 @@ export interface Message {
 }
 
 export interface Options {
+    fileType: FileType,
     output: string
+}
+
+export enum FileType {
+    PDF = "pdf",
+    EPUB = "epub"
 }

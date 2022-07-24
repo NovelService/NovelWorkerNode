@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "unit-test": "jest --testPathIgnorePatterns=\"integration/|node_modules/|dist/\"",
-    "integration-test": "jest --testPathIgnorePatterns=\"src/|node_modules/|dist/\"",
+    "integration-test": "jest --testPathIgnorePatterns=\"src/|node_modules/|dist/\" --runInBand",
     "docker-build": "docker build -t novelworkernode:latest ."
   },
   "author": "Xiang Rong Lin",
@@ -16,7 +16,7 @@
     "@aws-sdk/client-s3": "3.135.0",
     "@aws-sdk/client-sqs": "3.131.0",
     "@aws-sdk/s3-request-presigner": "3.135.0",
-    "@aws-sdk/util-dynamodb": "^3.131.0",
+    "@aws-sdk/util-dynamodb": "3.131.0",
     "percollate": "2.2.0"
   },
   "overrides": {
@@ -29,6 +29,7 @@
     "@types/jest": "^28.1.6",
     "@types/node": "^18.0.6",
     "jest": "^28.1.3",
+    "jest-each": "^28.1.3",
     "typescript": "4.7.4"
   },
   "jest": {
