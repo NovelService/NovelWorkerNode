@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import os from 'os'
 import path from 'path'
-import { epub, PercollateOptions } from 'percollate'
+import { epub, pdf, PercollateOptions } from 'percollate'
 
 const workDir = path.join(os.tmpdir(), 'novelservice')
 if (!fs.existsSync(workDir)) {
@@ -18,6 +18,18 @@ export class Converter {
 
         await epubFunction(urls, options)
         console.log(`finished converting epub. id ${id}`)
+        return {filepath: workDir, filename: filename}
+    }
+
+    async toPdf(id: string, urls: string[], pdfFunction = pdf) {
+        let filename = `${id}.pdf`
+        const options: PercollateOptions = {
+            output: path.join(workDir, filename),
+            wait: 2
+        }
+
+        await pdfFunction(urls, options)
+        console.log(`finished converting pdf. id ${id}`)
         return {filepath: workDir, filename: filename}
     }
 }
