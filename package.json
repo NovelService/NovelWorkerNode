@@ -23,7 +23,7 @@
     "puppeteer": "13.7.0"
   },
   "devDependencies": {
-    "@swc/core": "^1.2.218",
+    "@swc/core": "^1.2.222",
     "@swc/jest": "^0.2.22",
     "@tsconfig/node16": "^1.0.3",
     "@types/jest": "^28.1.6",
