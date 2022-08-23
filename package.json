@@ -12,11 +12,11 @@
   "author": "Xiang Rong Lin",
   "license": "MIT",
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "3.141.0",
+    "@aws-sdk/client-dynamodb": "3.154.0",
     "@aws-sdk/client-s3": "3.141.0",
     "@aws-sdk/client-sqs": "3.141.0",
     "@aws-sdk/s3-request-presigner": "3.137.0",
-    "@aws-sdk/util-dynamodb": "3.141.0",
+    "@aws-sdk/util-dynamodb": "3.154.0",
     "percollate": "2.2.0"
   },
   "overrides": {
@@ -26,8 +26,8 @@
     "@swc/core": "^1.2.241",
     "@swc/jest": "^0.2.22",
     "@tsconfig/node16": "^1.0.3",
-    "@types/jest": "^28.1.6",
-    "@types/node": "^18.7.9",
+    "@types/jest": "^28.1.7",
+    "@types/node": "^18.7.11",
     "jest": "^28.1.3",
     "jest-each": "^28.1.3",
     "typescript": "4.7.4"
