@@ -14,7 +14,7 @@
   "dependencies": {
     "@aws-sdk/client-dynamodb": "3.179.0",
     "@aws-sdk/client-s3": "3.179.0",
-    "@aws-sdk/client-sqs": "3.171.0",
+    "@aws-sdk/client-sqs": "3.179.0",
     "@aws-sdk/s3-request-presigner": "3.179.0",
     "@aws-sdk/util-dynamodb": "3.179.0",
     "percollate": "2.2.0"
