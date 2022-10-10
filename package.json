@@ -12,7 +12,7 @@
   "author": "Xiang Rong Lin",
   "license": "MIT",
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "3.183.0",
+    "@aws-sdk/client-dynamodb": "3.186.0",
     "@aws-sdk/client-s3": "3.183.0",
     "@aws-sdk/client-sqs": "3.183.0",
     "@aws-sdk/s3-request-presigner": "3.183.0",
