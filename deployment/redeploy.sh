@@ -8,6 +8,7 @@ if [ $PROVIDED_SECRET != $WEBHOOK_SECRET ]; then
 fi
 
 docker image prune -af
+docker network prune -f
 git pull
 docker-compose down
 docker-compose up -d 
