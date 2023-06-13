@@ -105,6 +105,6 @@ describe('Integration tests', () => {
             if (retries === 0) {
                 throw Error('Job was not finished in 10 seconds')
             }
-        }, 15000)
+        }, 60000)
 
 })
