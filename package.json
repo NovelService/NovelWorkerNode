@@ -20,7 +20,7 @@
     "percollate": "2.2.0"
   },
   "overrides": {
-    "puppeteer": "13.7.0"
+    "puppeteer": "20.7.1 "
   },
   "devDependencies": {
     "@swc/core": "^1.3.9",

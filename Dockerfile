@@ -6,7 +6,7 @@ RUN npm install -g typescript@4.6.4 npm@8.10.0
 COPY . .
 RUN npm install && tsc
 
-FROM zenika/alpine-chrome:101-with-node-16
+FROM zenika/alpine-chrome:114-with-node
 
 ENV NODE_ENV=production
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
