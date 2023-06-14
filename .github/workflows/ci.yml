@@ -32,8 +32,9 @@ jobs:
           cache: npm
       - run: npm ci
 
-      - run: docker compose -f docker-compose.ci.yml up -d
-      - name: Wait for Localstack to be running
+      - name: Start localstack
+        run: docker compose -f docker-compose.ci.yml up -d localstack
+      - name: Wait for localstack to be running
         run: sleep 15s
         # curl fails with exit code 52 for some reason
         # run: |
@@ -41,6 +42,9 @@ jobs:
         #     sleep 1
         #   done
       - run: chmod 500 create-localstack-resources.sh && ./create-localstack-resources.sh
+
+      - name: Start novel-worker-node
+        run: docker compose -f docker-compose.ci.yml up -d novelworkernode
 
       - run: npm run integration-test
 
