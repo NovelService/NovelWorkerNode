@@ -46,13 +46,10 @@ jobs:
 
       - name: extract logs
         if: ${{ failure() }}
-        run: docker compose -f docker-compose.ci.yml logs > docker-compose.log      
-      - name: echo logs
-        if: ${{ failure() }}
-        run: docker compose -f docker-compose.ci.yml logs
+        run: docker compose -f docker-compose.ci.yml logs > docker-compose.log
       - name: upload logs
         if: ${{ failure() }}
         uses: actions/upload-artifact@v3
         with:
           name: logs
-          path: docker-compose.logs
+          path: docker-compose.log
