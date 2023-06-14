@@ -3,7 +3,7 @@ version: "3.8"
 services:
   localstack:
     container_name: "localstack_main"
-    image: localstack/localstack
+    image: localstack/localstack:2.1.0
     hostname: "localstack"
     ports:
       - "127.0.0.1:4510-4559:4510-4559"  # external service port range
