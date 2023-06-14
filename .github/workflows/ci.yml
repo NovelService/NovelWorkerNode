@@ -28,7 +28,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
           cache: npm
       - run: npm ci
 
@@ -46,7 +46,10 @@ jobs:
 
       - name: extract logs
         if: ${{ failure() }}
-        run: docker compose -f docker-compose.ci.yml logs > docker-compose.log
+        run: docker compose -f docker-compose.ci.yml logs > docker-compose.log      
+      - name: echo logs
+        if: ${{ failure() }}
+        run: docker compose -f docker-compose.ci.yml logs
       - name: upload logs
         if: ${{ failure() }}
         uses: actions/upload-artifact@v3
