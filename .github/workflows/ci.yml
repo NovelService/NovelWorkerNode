@@ -5,6 +5,7 @@ on:
     branches:
       - master
   workflow_call:
+  merge_group:
 
 jobs:
   unit-test:
