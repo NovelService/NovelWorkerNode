@@ -17,7 +17,7 @@
     "@aws-sdk/client-sqs": "3.352.0",
     "@aws-sdk/s3-request-presigner": "3.363.0",
     "@aws-sdk/util-dynamodb": "3.218.0",
-    "percollate": "2.2.0"
+    "percollate": "4.0.2"
   },
   "overrides": {
     "puppeteer": "20.7.1 "
